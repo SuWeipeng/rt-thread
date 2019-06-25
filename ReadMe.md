@@ -47,8 +47,8 @@ Demo 中 `Libraries/rt-thread` 就是以 submodule 形式引用了这个精简�
 
 关注作者
 ---
-欢迎扫码关注我的公众号`MultiMCU EDU`。
-![](https://github.com/SuWeipeng/img/raw/master/gongzonghao.jpg)
+欢迎扫码关注我的公众号`MultiMCU EDU`。<br>
+![](https://github.com/SuWeipeng/img/raw/master/gongzonghao.jpg)<br>
 ### `提示：在公众号“关于我”页面可加作者微信好友。`
 
  
