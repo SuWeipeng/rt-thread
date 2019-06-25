@@ -40,7 +40,9 @@ STM32 **CubeMX** 图形化配置超级方便，并且 CubeMX 提供 VCP、FatFS 
 ---
 > 建议用 git submodule 的方式引用此精简内核代码。
 
-使用方法点此Demo连接：[lcd1602_rttthread_demo](https://github.com/SuWeipeng/lcd1602_rttthread_demo)
+使用方法点此Demo连接：[lcd1602_rttthread_demo](https://github.com/SuWeipeng/lcd1602_rttthread_demo)<br>
+不用git的朋友可以[百度网盘](https://pan.baidu.com/s/1jsNnhnDIDpMf5jHHLib5Cw)
+下载，提取码：2k2u。 
 
 Demo 中 `Libraries/rt-thread` 就是以 submodule 形式引用了这个精简内核。
 
