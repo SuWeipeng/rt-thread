@@ -3,6 +3,9 @@
 
 #include <rtthread.h>
 #include <rtdevice.h>
+#include <board.h>
+
+#define LED_B_PIN    GET_PIN(D, 15)
 
 #define RTT_CREATE(NAME,ENTRY,ARGS,STACK_SIZE,PRI,TICK)  \
   NAME##_thread = rt_thread_create(#NAME,                \
