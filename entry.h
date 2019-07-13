@@ -19,4 +19,16 @@
     return -1;                                           \
   }                                                      \
 
+#define RTT_MQ_CREATE(NAME,MSG_SIZE,MAX_MSGS,FLAG)          \
+  NAME##_mq = rt_mq_create(#NAME,                           \
+                           MSG_SIZE,                        \
+                           MAX_MSGS,                        \
+                           FLAG);                           \
+  if(NAME##_mq != RT_NULL)                                  \
+    rt_kprintf(#NAME " message queue create success!\n\n"); \
+  else{                                                     \
+    rt_kprintf(#NAME " message queue create failed!\n\n");  \
+    return -1;                                              \
+  }
+  
 #endif
