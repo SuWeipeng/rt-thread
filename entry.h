@@ -31,4 +31,13 @@
     return -1;                                              \
   }
   
+#define RTT_SEM_CREATE(NAME,VALUE,FLAG)                \
+  NAME##_sem = rt_sem_create(#NAME,                    \
+                             VALUE,                    \
+                             FLAG);                    \
+  if(NAME##_sem != RT_NULL)                            \
+    rt_kprintf(#NAME "semaphore create success!\n\n"); \
+  else                                                 \
+    rt_kprintf(#NAME "semaphore create failed!\n\n");
+  
 #endif
