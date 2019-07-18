@@ -155,13 +155,15 @@
 /* samples: kernel and components samples */
 
 #define SOC_FAMILY_STM32
-#define SOC_SERIES_STM32F4
+#define SOC_SERIES_STM32L4
 
 /* Hardware Drivers Config */
 
-#define SOC_STM32F407VG
+#define SOC_STM32L475VE
 
 /* Onboard Peripheral Drivers */
+
+#define BSP_USING_STLINK_TO_USART
 
 /* On-chip Peripheral Drivers */
 
