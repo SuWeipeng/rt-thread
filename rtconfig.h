@@ -79,6 +79,7 @@
 #define RT_USING_DEVICE_IPC
 #define RT_PIPE_BUFSZ 512
 #define RT_USING_PIN
+#define RT_USING_SERIAL
 
 /* Using Hardware Crypto drivers */
 
@@ -167,6 +168,8 @@
 
 /* On-chip Peripheral Drivers */
 
+#define BSP_USING_UART
+#define BSP_USING_UART1
 
 /* Board extended module Drivers */
 
