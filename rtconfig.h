@@ -56,7 +56,7 @@
 
 
 /* Command shell */
-/*
+
 #define RT_USING_FINSH
 #define FINSH_THREAD_NAME "tshell"
 #define FINSH_USING_HISTORY
@@ -70,7 +70,7 @@
 #define FINSH_USING_MSH_DEFAULT
 #define FINSH_USING_MSH_ONLY
 #define FINSH_ARG_MAX 10
-*/
+
 /* Device virtual file system */
 
 
