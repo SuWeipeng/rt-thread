@@ -38,7 +38,7 @@
 #define RT_USING_DEVICE
 #define RT_USING_CONSOLE
 #define RT_CONSOLEBUF_SIZE 128
-#define RT_CONSOLE_DEVICE_NAME "uart1"
+#define RT_CONSOLE_DEVICE_NAME "uart2"
 #define RT_VER_NUM 0x40002
 #define ARCH_ARM
 #define RT_USING_CPU_FFS
@@ -80,6 +80,8 @@
 #define RT_PIPE_BUFSZ 512
 #define RT_USING_PIN
 #define RT_USING_SERIAL
+//#define RT_SERIAL_USING_DMA
+//#define RT_SERIAL_RB_BUFSZ 64
 
 /* Using Hardware Crypto drivers */
 
@@ -167,7 +169,8 @@
 /* On-chip Peripheral Drivers */
 
 #define BSP_USING_UART
-#define BSP_USING_UART1
+#define BSP_USING_UART2
+//#define BSP_UART1_RX_USING_DMA
 
 /* Board extended module Drivers */
 
