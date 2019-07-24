@@ -80,8 +80,8 @@
 #define RT_PIPE_BUFSZ 512
 #define RT_USING_PIN
 #define RT_USING_SERIAL
-//#define RT_SERIAL_USING_DMA
-//#define RT_SERIAL_RB_BUFSZ 64
+#define RT_SERIAL_USING_DMA
+#define RT_SERIAL_RB_BUFSZ 64
 
 /* Using Hardware Crypto drivers */
 
@@ -170,7 +170,7 @@
 
 #define BSP_USING_UART
 #define BSP_USING_UART2
-//#define BSP_UART1_RX_USING_DMA
+#define BSP_UART2_RX_USING_DMA
 
 /* Board extended module Drivers */
 
