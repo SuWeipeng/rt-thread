@@ -32,43 +32,43 @@
 
 /* Turn on some of these (set to non-zero) to debug kernel */
 #ifndef RT_DEBUG_MEM
-#define RT_DEBUG_MEM                   0
+#define RT_DEBUG_MEM                   1
 #endif
 
 #ifndef RT_DEBUG_MEMHEAP
-#define RT_DEBUG_MEMHEAP               0
+#define RT_DEBUG_MEMHEAP               1
 #endif
 
 #ifndef RT_DEBUG_MODULE
-#define RT_DEBUG_MODULE                0
+#define RT_DEBUG_MODULE                1
 #endif
 
 #ifndef RT_DEBUG_SCHEDULER
-#define RT_DEBUG_SCHEDULER             0
+#define RT_DEBUG_SCHEDULER             1
 #endif
 
 #ifndef RT_DEBUG_SLAB
-#define RT_DEBUG_SLAB                  0
+#define RT_DEBUG_SLAB                  1
 #endif
 
 #ifndef RT_DEBUG_THREAD
-#define RT_DEBUG_THREAD                0
+#define RT_DEBUG_THREAD                1
 #endif
 
 #ifndef RT_DEBUG_TIMER
-#define RT_DEBUG_TIMER                 0
+#define RT_DEBUG_TIMER                 1
 #endif
 
 #ifndef RT_DEBUG_IRQ
-#define RT_DEBUG_IRQ                   0
+#define RT_DEBUG_IRQ                   1
 #endif
 
 #ifndef RT_DEBUG_IPC
-#define RT_DEBUG_IPC                   0
+#define RT_DEBUG_IPC                   1
 #endif
 
 #ifndef RT_DEBUG_INIT
-#define RT_DEBUG_INIT                  0
+#define RT_DEBUG_INIT                  1
 #endif
 
 /* Turn on this to enable context check */

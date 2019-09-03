@@ -45,6 +45,8 @@
 #define ARCH_ARM_CORTEX_M
 #define ARCH_ARM_CORTEX_M4
 
+#define RT_DEBUG
+
 /* RT-Thread Components */
 
 #define RT_USING_COMPONENTS_INIT
