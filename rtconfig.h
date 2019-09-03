@@ -95,6 +95,10 @@
 /* POSIX layer and C standard library */
 #define RT_USING_LIBC
 
+#if defined ( __GNUC__ )
+#define RT_USING_NEWLIB
+#endif
+
 /* Network */
 
 /* Socket abstraction layer */
