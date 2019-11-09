@@ -12,14 +12,14 @@
 #define __BOARD_H__
 
 #include <rtthread.h>
-#include <stm32l4xx.h>
+#include <stm32f1xx.h>
 #include "drv_gpio.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define STM32_SRAM_SIZE        (96)
+#define STM32_SRAM_SIZE        (20)
 #define STM32_SRAM_END         (0x20000000 + STM32_SRAM_SIZE * 1024)
 
 #if defined(__CC_ARM) || defined(__CLANG_ARM)

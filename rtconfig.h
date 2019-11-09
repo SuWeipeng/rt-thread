@@ -17,7 +17,6 @@
 #define RT_IDEL_HOOK_LIST_SIZE 4
 #define IDLE_THREAD_STACK_SIZE 256
 #define RT_DEBUG
-#define RT_DEBUG_COLOR
 
 /* Inter-Thread communication */
 
@@ -41,9 +40,8 @@
 #define RT_CONSOLE_DEVICE_NAME "uart1"
 #define RT_VER_NUM 0x40002
 #define ARCH_ARM
-#define RT_USING_CPU_FFS
 #define ARCH_ARM_CORTEX_M
-#define ARCH_ARM_CORTEX_M4
+#define ARCH_ARM_CORTEX_M3
 
 /* RT-Thread Components */
 
@@ -90,9 +88,9 @@
 
 
 /* Using USB */
-
+/*
 #define RT_USING_USB_DEVICE
-#define RT_USBD_THREAD_STACK_SZ 4096
+#define RT_USBD_THREAD_STACK_SZ 1024
 #define USB_VENDOR_ID 0x0FFE
 #define USB_PRODUCT_ID 0x0001
 #define _RT_USB_DEVICE_CDC
@@ -101,7 +99,7 @@
 #define RT_VCOM_SERNO "32021919830108"
 #define RT_VCOM_SER_LEN 14
 #define RT_VCOM_TX_TIMEOUT 1000
-
+*/
 
 /* POSIX layer and C standard library */
 
@@ -169,11 +167,11 @@
 /* samples: kernel and components samples */
 
 #define SOC_FAMILY_STM32
-#define SOC_SERIES_STM32L4
+#define SOC_SERIES_STM32F1
 
 /* Hardware Drivers Config */
 
-#define SOC_STM32L475VE
+#define SOC_STM32F103C8
 
 /* Onboard Peripheral Drivers */
 
@@ -183,9 +181,8 @@
 
 #define BSP_USING_UART
 #define BSP_USING_UART1
-#define BSP_USING_UART3
-#define BSP_UART3_RX_USING_DMA
-#define BSP_USING_USBD
+#define BSP_UART1_RX_USING_DMA
+//#define BSP_USING_USBD
 
 /* Board extended module Drivers */
 
