@@ -80,6 +80,7 @@
 #define RT_USING_SERIAL
 #define RT_SERIAL_USING_DMA
 #define RT_SERIAL_RB_BUFSZ 64
+#define RT_USING_SPI
 
 /* Using Hardware Crypto drivers */
 
@@ -160,6 +161,10 @@
 
 /* peripheral libraries and drivers */
 
+#define PKG_USING_NRF24L01
+#define PKG_USING_NRF24L01_LATEST_VERSION
+#define PKG_USING_NRF24L01_SAMPLE
+#define NRF24L01_SAMPLE_IRQ_PRX
 
 /* miscellaneous packages */
 
@@ -183,6 +188,8 @@
 #define BSP_USING_UART1
 #define BSP_UART1_RX_USING_DMA
 #define BSP_USING_USBD
+#define BSP_USING_SPI
+#define BSP_USING_SPI2
 
 /* Board extended module Drivers */
 
