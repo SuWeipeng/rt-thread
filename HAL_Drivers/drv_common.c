@@ -66,6 +66,7 @@ void HAL_ResumeTick(void)
 
 void HAL_Delay(__IO uint32_t Delay)
 {
+  rt_thread_delay(Delay);
 }
 
 /* re-implement tick interface for STM32 HAL */
