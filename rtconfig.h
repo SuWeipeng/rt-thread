@@ -15,7 +15,7 @@
 #define RT_USING_HOOK
 #define RT_USING_IDLE_HOOK
 #define RT_IDEL_HOOK_LIST_SIZE 4
-#define IDLE_THREAD_STACK_SIZE 256
+#define IDLE_THREAD_STACK_SIZE 128
 #define RT_DEBUG
 
 /* Inter-Thread communication */
@@ -47,7 +47,7 @@
 
 #define RT_USING_COMPONENTS_INIT
 #define RT_USING_USER_MAIN
-#define RT_MAIN_THREAD_STACK_SIZE 2048
+#define RT_MAIN_THREAD_STACK_SIZE (512+128)
 #define RT_MAIN_THREAD_PRIORITY 10
 
 /* C++ features */
@@ -62,7 +62,7 @@
 #define FINSH_USING_SYMTAB
 #define FINSH_USING_DESCRIPTION
 #define FINSH_THREAD_PRIORITY 20
-#define FINSH_THREAD_STACK_SIZE 4096
+#define FINSH_THREAD_STACK_SIZE (512+128)
 #define FINSH_CMD_SIZE 80
 #define FINSH_USING_MSH
 #define FINSH_USING_MSH_DEFAULT
@@ -81,6 +81,7 @@
 #define RT_SERIAL_USING_DMA
 #define RT_SERIAL_RB_BUFSZ 64
 #define RT_USING_SPI
+#define RT_USING_ADC
 
 /* Using Hardware Crypto drivers */
 
@@ -91,12 +92,12 @@
 /* Using USB */
 
 #define RT_USING_USB_DEVICE
-#define RT_USBD_THREAD_STACK_SZ 1024
+#define RT_USBD_THREAD_STACK_SZ 512
 #define USB_VENDOR_ID 0x0FFE
 #define USB_PRODUCT_ID 0x0001
 #define _RT_USB_DEVICE_CDC
 #define RT_USB_DEVICE_CDC
-#define RT_VCOM_TASK_STK_SIZE 512
+#define RT_VCOM_TASK_STK_SIZE (256+128)
 #define RT_VCOM_SERNO "32021919830108"
 #define RT_VCOM_SER_LEN 14
 #define RT_VCOM_TX_TIMEOUT 1000
@@ -192,6 +193,8 @@
 #define BSP_USING_USBD
 #define BSP_USING_SPI
 #define BSP_USING_SPI1
+#define BSP_USING_ADC
+#define BSP_USING_ADC1
 
 /* Board extended module Drivers */
 
