@@ -191,7 +191,7 @@
 #define BSP_UART1_RX_USING_DMA
 #define BSP_USING_USBD
 #define BSP_USING_SPI
-#define BSP_USING_SPI2
+#define BSP_USING_SPI1
 
 /* Board extended module Drivers */
 
