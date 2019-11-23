@@ -81,6 +81,7 @@
 #define RT_SERIAL_USING_DMA
 #define RT_SERIAL_RB_BUFSZ 64
 #define RT_USING_SPI
+#define RT_USING_ADC
 
 /* Using Hardware Crypto drivers */
 
@@ -192,6 +193,8 @@
 #define BSP_USING_USBD
 #define BSP_USING_SPI
 #define BSP_USING_SPI2
+#define BSP_USING_ADC
+#define BSP_USING_ADC1
 
 /* Board extended module Drivers */
 
