@@ -48,16 +48,16 @@ typedef long    fd_mask;
 
 /* We use a macro for fd_set so that including Sockets.h afterwards
    can work.  */
-typedef struct __types_fd_set {
+typedef struct _types_fd_set {
     fd_mask fds_bits[howmany(FD_SETSIZE, NFDBITS)];
-} __types_fd_set;
+} _types_fd_set;
 
 #define fd_set _types_fd_set
 
 #  define   FD_SET(n, p)    ((p)->fds_bits[(n)/NFDBITS] |= (1L << ((n) % NFDBITS)))
 #  define   FD_CLR(n, p)    ((p)->fds_bits[(n)/NFDBITS] &= ~(1L << ((n) % NFDBITS)))
 #  define   FD_ISSET(n, p)  ((p)->fds_bits[(n)/NFDBITS] & (1L << ((n) % NFDBITS)))
-//#  define   FD_ZERO(p)      memset((void*)(p), 0, sizeof(*(p)))
+#  define   FD_ZERO(p)      memset((void*)(p), 0, sizeof(*(p)))
 
 #endif
 
