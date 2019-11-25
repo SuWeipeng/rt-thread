@@ -14,7 +14,7 @@
 //#include <drv_common.h>
 #include <rthw.h>
 #include <drivers/pin.h>
-//#include <board.h>
+#include <board.h>
 
 #define __STM32_PORT(port)  GPIO##port
 

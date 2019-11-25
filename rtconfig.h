@@ -106,6 +106,7 @@
 #define RT_MMCSD_STACK_SIZE 1024
 #define RT_MMCSD_THREAD_PREORITY 22
 #define RT_MMCSD_MAX_PARTITION 16
+#define RT_USING_SPI
 
 /* Using Hardware Crypto drivers */
 
@@ -180,6 +181,12 @@
 /* peripheral libraries and drivers */
 
 #define SDIO_MAX_FREQ 1000000
+#define PKG_USING_NRF24L01
+#define PKG_USING_NRF24L01_LATEST_VERSION
+#define PKG_USING_NRF24L01_SAMPLE
+#define NRF24L01_SAMPLE_IRQ_PTX
+#define NRF24_USING_INFO_REPORT
+#define NRF24_USING_SHELL_CMD
 
 /* miscellaneous packages */
 
@@ -203,6 +210,8 @@
 #define BSP_USING_UART2
 #define BSP_UART2_RX_USING_DMA
 #define BSP_USING_SDIO
+#define BSP_USING_SPI
+#define BSP_USING_SPI1
 
 /* Board extended module Drivers */
 
