@@ -10,14 +10,14 @@
 
 #include "board.h"
 
-void rt_hw_console_output(const char *str)
-{
-  rt_enter_critical();
-  while(*str!='\0') {
-    if(*str=='\n') {
-      ITM_SendChar('\r');
-    }
-    ITM_SendChar(*(str++));
-  }
-  rt_exit_critical();
-}
+//void rt_hw_console_output(const char *str)
+//{
+//  rt_enter_critical();
+//  while(*str!='\0') {
+//    if(*str=='\n') {
+//      ITM_SendChar('\r');
+//    }
+//    ITM_SendChar(*(str++));
+//  }
+//  rt_exit_critical();
+//}
