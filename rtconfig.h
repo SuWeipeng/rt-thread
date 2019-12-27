@@ -15,7 +15,7 @@
 #define RT_USING_HOOK
 #define RT_USING_IDLE_HOOK
 #define RT_IDEL_HOOK_LIST_SIZE 4
-#define IDLE_THREAD_STACK_SIZE 128
+#define IDLE_THREAD_STACK_SIZE 512
 #define RT_DEBUG
 
 /* Inter-Thread communication */
@@ -62,7 +62,7 @@
 #define FINSH_USING_SYMTAB
 #define FINSH_USING_DESCRIPTION
 #define FINSH_THREAD_PRIORITY 20
-#define FINSH_THREAD_STACK_SIZE (512+128)
+#define FINSH_THREAD_STACK_SIZE (1024+128)
 #define FINSH_CMD_SIZE 80
 #define FINSH_USING_MSH
 #define FINSH_USING_MSH_DEFAULT
@@ -198,12 +198,5 @@
 
 /* Board extended module Drivers */
 
-/* Linux build */
-#if defined (__GNUC__)
-#define RT_USING_NEWLIB
-#define HAVE_SIGEVENT
-#define HAVE_SIGVAL
-#define HAVE_SIGINFO
-#endif
 
 #endif
