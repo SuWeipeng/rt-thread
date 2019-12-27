@@ -198,5 +198,12 @@
 
 /* Board extended module Drivers */
 
+/* Linux build */
+#if defined (__GNUC__)
+#define RT_USING_NEWLIB
+#define HAVE_SIGEVENT
+#define HAVE_SIGVAL
+#define HAVE_SIGINFO
+#endif
 
 #endif
