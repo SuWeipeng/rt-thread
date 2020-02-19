@@ -31,6 +31,7 @@
  *                             add smp relevant macros
  * 2019-01-27     Bernard      change version number to v4.0.1
  * 2019-05-17     Bernard      change version number to v4.0.2
+ * 2019-12-20     Bernard      change version number to v4.0.3
  */
 
 #ifndef __RT_DEF_H__
@@ -52,7 +53,7 @@ extern "C" {
 /* RT-Thread version information */
 #define RT_VERSION                      4L              /**< major version number */
 #define RT_SUBVERSION                   0L              /**< minor version number */
-#define RT_REVISION                     2L              /**< revise version number */
+#define RT_REVISION                     3L              /**< revise version number */
 
 /* RT-Thread version */
 #define RTTHREAD_VERSION                ((RT_VERSION * 10000) + \
@@ -430,6 +431,7 @@ struct rt_object_information
 #define RT_TIMER_CTRL_GET_TIME          0x1             /**< get timer control command */
 #define RT_TIMER_CTRL_SET_ONESHOT       0x2             /**< change timer to one shot */
 #define RT_TIMER_CTRL_SET_PERIODIC      0x3             /**< change timer to periodic */
+#define RT_TIMER_CTRL_GET_STATE         0x4             /**< get timer run state active or deactive*/
 
 #ifndef RT_TIMER_SKIP_LIST_LEVEL
 #define RT_TIMER_SKIP_LIST_LEVEL          1
@@ -522,7 +524,7 @@ typedef siginfo_t rt_siginfo_t;
 
 /**
  * CPUs definitions
- * 
+ *
  */
 struct rt_cpu
 {
