@@ -9,6 +9,7 @@
  */
 
 #include "drv_common.h"
+#include "board.h"
 
 #ifdef RT_USING_SERIAL
 #include "drv_usart.h"
@@ -53,7 +54,7 @@ void SysTick_Handler(void)
 
 uint32_t HAL_GetTick(void)
 {
-    return rt_tick_get();
+    return rt_tick_get() * 1000 / RT_TICK_PER_SECOND;
 }
 
 void HAL_SuspendTick(void)
@@ -66,7 +67,7 @@ void HAL_ResumeTick(void)
 
 void HAL_Delay(__IO uint32_t Delay)
 {
-	rt_thread_delay(Delay);
+    rt_thread_mdelay(Delay);
 }
 
 /* re-implement tick interface for STM32 HAL */
@@ -130,7 +131,7 @@ RT_WEAK void rt_hw_board_init()
     __set_PRIMASK(0);
     /* System clock initialization */
     SystemClock_Config();
-    /* disbale interrupt */
+    /* disable interrupt */
     __set_PRIMASK(1);
 
     rt_hw_systick_init();

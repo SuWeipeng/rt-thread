@@ -636,7 +636,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 }
 #endif
 
-#if defined(SOC_SERIES_STM32F0) || defined(SOC_SERIES_STM32G0)
+#if defined(SOC_SERIES_STM32F0) || defined(SOC_SERIES_STM32G0) || defined(SOC_SERIES_STM32L0)
 void EXTI0_1_IRQHandler(void)
 {
     rt_interrupt_enter();
@@ -654,6 +654,7 @@ void EXTI2_3_IRQHandler(void)
 }
 void EXTI4_15_IRQHandler(void)
 {
+    rt_interrupt_enter();
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
@@ -666,6 +667,7 @@ void EXTI4_15_IRQHandler(void)
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_14);
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_15);
+    rt_interrupt_leave();
 }
 
 #else
