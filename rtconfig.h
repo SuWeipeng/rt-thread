@@ -85,6 +85,8 @@
 #define RT_USING_SERIAL
 #define RT_SERIAL_USING_DMA
 #define RT_SERIAL_RB_BUFSZ 64
+#define RT_USING_I2C
+#define RT_USING_I2C_BITOPS
 
 /* Using Hardware Crypto drivers */
 
@@ -177,6 +179,14 @@
 #define BSP_USING_UART1
 #define BSP_USING_UART3
 #define BSP_UART3_RX_USING_DMA
+#define BSP_USING_I2C
+#define BSP_USING_I2C1
+
+/* Notice: PB8 --> 24; PB9 --> 25 */
+
+#define BSP_I2C1_SCL_PIN 24
+#define BSP_I2C1_SDA_PIN 25
+
 /* Board extended module Drivers */
 
 
