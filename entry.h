@@ -40,4 +40,16 @@
   else                                                 \
     rt_kprintf(#NAME "semaphore create failed!\n\n");
   
+#define RTT_TIMER_CREATE(NAME,CALLBACK,ARGS,TIME,FLAG)  \
+  NAME##_timer = rt_timer_create(#NAME,                 \
+                                 CALLBACK,              \
+								 ARGS,                  \
+								 TIME,                  \
+								 FLAG);                 \
+  if(NAME##_timer != RT_NULL)	                        \
+    rt_timer_start(NAME##_timer);                       \
+  else{                                                 \
+    rt_kprintf(#NAME " timer create failed!\n");        \
+    return -1;                                          \
+  }                                                     								 
 #endif
