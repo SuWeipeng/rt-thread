@@ -16,6 +16,9 @@
 #define RT_USING_IDLE_HOOK
 #define RT_IDEL_HOOK_LIST_SIZE 4
 #define IDLE_THREAD_STACK_SIZE 512
+#define RT_USING_TIMER_SOFT
+#define RT_TIMER_THREAD_PRIO 2
+#define RT_TIMER_THREAD_STACK_SIZE 2048
 #define RT_DEBUG
 #define RT_DEBUG_COLOR
 
@@ -107,6 +110,8 @@
 #define RT_MMCSD_THREAD_PREORITY 22
 #define RT_MMCSD_MAX_PARTITION 16
 #define RT_USING_SPI
+#define RT_USING_I2C
+#define RT_USING_I2C_BITOPS
 
 /* Using Hardware Crypto drivers */
 
@@ -223,6 +228,13 @@
 #define BSP_USING_SPI
 #define BSP_USING_SPI1
 #define BSP_USING_USBD
+#define BSP_USING_I2C
+#define BSP_USING_I2C1
+
+/* Notice: PB8 --> 24; PB9 --> 25 */
+
+#define BSP_I2C1_SCL_PIN 24
+#define BSP_I2C1_SDA_PIN 25
 
 /* Board extended module Drivers */
 
