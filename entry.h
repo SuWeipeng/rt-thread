@@ -1,6 +1,10 @@
 #ifndef __ENTRY_H__
 #define __ENTRY_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+  
 #include <stdio.h>
 #include <rtthread.h>
 #include <rtdevice.h>
@@ -52,5 +56,10 @@
   else{                                                 \
     rt_kprintf(#NAME " timer create failed!\n");        \
     return -1;                                          \
-  }                                                     								 
+  }  
+  
+#ifdef __cplusplus
+}
+#endif
+  
 #endif

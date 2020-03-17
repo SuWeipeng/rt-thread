@@ -39,9 +39,9 @@
 /* Kernel Device Object */
 
 #define RT_USING_DEVICE
-//#define RT_USING_CONSOLE
-//#define RT_CONSOLEBUF_SIZE 128
-//#define RT_CONSOLE_DEVICE_NAME "uart2"
+#define RT_USING_CONSOLE
+#define RT_CONSOLEBUF_SIZE 128
+#define RT_CONSOLE_DEVICE_NAME "uart2"
 #define RT_VER_NUM 0x40002
 #define ARCH_ARM
 #define RT_USING_CPU_FFS
@@ -59,7 +59,7 @@
 
 
 /* Command shell */
-/*
+
 #define RT_USING_FINSH
 #define FINSH_THREAD_NAME "tshell"
 #define FINSH_USING_HISTORY
@@ -73,7 +73,7 @@
 #define FINSH_USING_MSH_DEFAULT
 #define FINSH_USING_MSH_ONLY
 #define FINSH_ARG_MAX 10
-*/
+
 /* Device virtual file system */
 
 #define RT_USING_DFS
@@ -229,12 +229,12 @@
 #define BSP_USING_SPI1
 #define BSP_USING_USBD
 #define BSP_USING_I2C
-#define BSP_USING_I2C1
+#define BSP_USING_I2C2
 
-/* Notice: PB8 --> 24; PB9 --> 25 */
+/* Notice: PB10 --> 26; PB11 --> 27 */
 
-#define BSP_I2C1_SCL_PIN 24
-#define BSP_I2C1_SDA_PIN 25
+#define BSP_I2C2_SCL_PIN 26
+#define BSP_I2C2_SDA_PIN 27
 
 /* Board extended module Drivers */
 
