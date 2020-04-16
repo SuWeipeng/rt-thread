@@ -57,6 +57,14 @@ extern "C" {
     rt_kprintf(#NAME " timer create failed!\n");        \
     return -1;                                          \
   }  
+
+#define RTT_MUTEX_CREATE(NAME,FLAG)                     \
+  NAME##_mutex = rt_mutex_create(#NAME,                 \
+                                 FLAG);                 \
+  if(NAME##_mutex != RT_NULL)	                        \
+    rt_kprintf(#NAME "mutex create success!\n\n");      \
+  else                                                  \
+    rt_kprintf(#NAME "mutex create failed!\n\n");
   
 #ifdef __cplusplus
 }
