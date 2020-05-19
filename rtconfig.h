@@ -39,9 +39,9 @@
 /* Kernel Device Object */
 
 #define RT_USING_DEVICE
-#define RT_USING_CONSOLE
-#define RT_CONSOLEBUF_SIZE 128
-#define RT_CONSOLE_DEVICE_NAME "uart2"
+//#define RT_USING_CONSOLE
+//#define RT_CONSOLEBUF_SIZE 128
+//#define RT_CONSOLE_DEVICE_NAME "uart2"
 #define RT_VER_NUM 0x40002
 #define ARCH_ARM
 #define RT_USING_CPU_FFS
@@ -59,7 +59,7 @@
 
 
 /* Command shell */
-
+/*
 #define RT_USING_FINSH
 #define FINSH_THREAD_NAME "tshell"
 #define FINSH_USING_HISTORY
@@ -73,7 +73,7 @@
 #define FINSH_USING_MSH_DEFAULT
 #define FINSH_USING_MSH_ONLY
 #define FINSH_ARG_MAX 10
-
+*/
 /* Device virtual file system */
 
 #define RT_USING_DFS
@@ -100,9 +100,9 @@
 #define RT_USING_DEVICE_IPC
 #define RT_PIPE_BUFSZ 512
 #define RT_USING_PIN
-#define RT_USING_SERIAL
-#define RT_SERIAL_USING_DMA
-#define RT_SERIAL_RB_BUFSZ 64
+//#define RT_USING_SERIAL
+//#define RT_SERIAL_USING_DMA
+//#define RT_SERIAL_RB_BUFSZ 64
 #define RT_USING_SDIO
 #define RT_SDIO_STACK_SIZE 512
 #define RT_SDIO_THREAD_PRIORITY 15
@@ -120,7 +120,7 @@
 
 
 /* Using USB */
-
+/*
 #define RT_USING_USB_DEVICE
 #define RT_USBD_THREAD_STACK_SZ 4096
 #define USB_VENDOR_ID 0x0FFE
@@ -131,7 +131,7 @@
 #define RT_VCOM_SERNO "32021919830108"
 #define RT_VCOM_SER_LEN 14
 #define RT_VCOM_TX_TIMEOUT 1000
-
+*/
 /* POSIX layer and C standard library */
 #define RT_LIBC_USING_TIME
 
@@ -213,7 +213,7 @@
 
 /* Hardware Drivers Config */
 
-#define SOC_STM32F407VG
+#define SOC_STM32F407VE
 
 /* Onboard Peripheral Drivers */
 
@@ -221,9 +221,9 @@
 
 /* On-chip Peripheral Drivers */
 
-#define BSP_USING_UART
-#define BSP_USING_UART2
-#define BSP_UART2_RX_USING_DMA
+//#define BSP_USING_UART
+//#define BSP_USING_UART2
+//#define BSP_UART2_RX_USING_DMA
 #define BSP_USING_SDIO
 #define BSP_USING_SPI
 #define BSP_USING_SPI1
