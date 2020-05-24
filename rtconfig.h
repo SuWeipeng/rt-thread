@@ -227,6 +227,7 @@
 #define BSP_USING_SDIO
 #define BSP_USING_SPI
 #define BSP_USING_SPI1
+#define BSP_USING_SPI2
 #define BSP_USING_USBD
 #define BSP_USING_I2C
 #define BSP_USING_I2C2
