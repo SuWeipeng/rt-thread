@@ -112,6 +112,7 @@
 #define RT_USING_SPI
 #define RT_USING_I2C
 #define RT_USING_I2C_BITOPS
+#define RT_USING_PWM
 
 /* Using Hardware Crypto drivers */
 
@@ -231,6 +232,9 @@
 #define BSP_USING_USBD
 #define BSP_USING_I2C
 #define BSP_USING_I2C2
+#define BSP_USING_PWM
+#define BSP_USING_PWM9
+#define BSP_USING_PWM9_CH2
 
 /* Notice: PB10 --> 26; PB11 --> 27 */
 
