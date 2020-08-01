@@ -37,7 +37,7 @@
 #define RT_USING_DEVICE
 #define RT_USING_CONSOLE
 #define RT_CONSOLEBUF_SIZE 128
-#define RT_CONSOLE_DEVICE_NAME "uart1"
+#define RT_CONSOLE_DEVICE_NAME "uart2"
 #define RT_VER_NUM 0x40002
 #define ARCH_ARM
 #define ARCH_ARM_CORTEX_M
@@ -81,7 +81,6 @@
 #define RT_SERIAL_USING_DMA
 #define RT_SERIAL_RB_BUFSZ 64
 #define RT_USING_SPI
-#define RT_USING_ADC
 
 /* Using Hardware Crypto drivers */
 
@@ -188,13 +187,10 @@
 /* On-chip Peripheral Drivers */
 
 #define BSP_USING_UART
-#define BSP_USING_UART1
-#define BSP_UART1_RX_USING_DMA
-#define BSP_USING_USBD
+#define BSP_USING_UART2
+#define BSP_UART2_RX_USING_DMA
 #define BSP_USING_SPI
-#define BSP_USING_SPI1
-#define BSP_USING_ADC
-#define BSP_USING_ADC1
+#define BSP_USING_SPI2
 
 /* Board extended module Drivers */
 
