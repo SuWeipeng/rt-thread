@@ -189,8 +189,9 @@
 
 #define BSP_USING_UART
 #define BSP_USING_UART1
+#define BSP_UART1_TX_USING_DMA
 #define BSP_UART1_RX_USING_DMA
-#define BSP_USING_USBD
+//#define BSP_USING_USBD
 #define BSP_USING_SPI
 #define BSP_USING_SPI1
 #define BSP_USING_ADC
