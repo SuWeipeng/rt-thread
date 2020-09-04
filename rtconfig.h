@@ -104,7 +104,9 @@
 */
 
 /* POSIX layer and C standard library */
-
+#if defined ( __GNUC__ )
+#define RT_USING_NEWLIB
+#endif
 
 /* Network */
 
