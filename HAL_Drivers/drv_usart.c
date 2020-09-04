@@ -839,8 +839,8 @@ static void stm32_uart_get_dma_config(void)
 static void stm32_dma_config(struct rt_serial_device *serial, rt_ubase_t flag)
 {
     struct rt_serial_rx_fifo *rx_fifo;
-    DMA_HandleTypeDef *DMA_Handle;
-    struct dma_config *dma_config;
+    DMA_HandleTypeDef *DMA_Handle = RT_NULL;
+    struct dma_config *dma_config = RT_NULL;
     struct stm32_uart *uart;
 
     RT_ASSERT(serial != RT_NULL);
