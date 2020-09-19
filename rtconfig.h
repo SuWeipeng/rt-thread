@@ -202,6 +202,9 @@
 #define PKG_NRF24L01_VERSION "latest"
 #define NRF24_USING_INFO_REPORT
 #define NRF24_USING_SHELL_CMD
+#define PKG_USING_PCA9685
+#define PKG_USING_PCA9685_SAMPLE
+#define PKG_USING_PCA9685_LATEST_VERSION
 
 /* miscellaneous packages */
 
@@ -231,10 +234,14 @@
 #define BSP_USING_SPI2
 #define BSP_USING_USBD
 #define BSP_USING_I2C
+#define BSP_USING_I2C1
 #define BSP_USING_I2C2
 #define BSP_USING_PWM
 #define BSP_USING_PWM9
 #define BSP_USING_PWM9_CH2
+
+#define BSP_I2C1_SCL_PIN    GET_PIN(D, 9)
+#define BSP_I2C1_SDA_PIN    GET_PIN(D, 10)
 
 /* Notice: PB10 --> 26; PB11 --> 27 */
 
