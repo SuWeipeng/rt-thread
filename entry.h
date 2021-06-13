@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <rtthread.h>
 #include <rtdevice.h>
+#include <board.h>
 
 #define RTT_CREATE(NAME,ENTRY,ARGS,STACK_SIZE,PRI,TICK)  \
   NAME##_thread = rt_thread_create(#NAME,                \
