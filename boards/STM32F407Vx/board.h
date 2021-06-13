@@ -13,6 +13,7 @@
 
 #include <rtthread.h>
 #include <stm32f4xx.h>
+#include "drv_common.h"
 
 #ifdef __cplusplus
 extern "C" {

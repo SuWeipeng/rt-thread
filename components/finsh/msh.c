@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2018, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -374,7 +374,7 @@ int msh_exec(char *cmd, rt_size_t length)
     int cmd_ret;
 
     /* strim the beginning of command */
-    while (*cmd  == ' ' || *cmd == '\t')
+    while ((length > 0) && (*cmd  == ' ' || *cmd == '\t'))
     {
         cmd++;
         length--;

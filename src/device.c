@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2018, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -12,12 +12,13 @@
  * 2012-12-25     Bernard      return RT_EOK if the device interface not exist.
  * 2013-07-09     Grissiom     add ref_count support
  * 2016-04-02     Bernard      fix the open_flag initialization issue.
+ * 2021-03-19     Meco Man     remove rt_device_init_all()
  */
 
 #include <rtthread.h>
-#if defined(RT_USING_POSIX)
+#ifdef RT_USING_POSIX
 #include <rtdevice.h> /* for wqueue_init */
-#endif
+#endif /* RT_USING_POSIX */
 
 #ifdef RT_USING_DEVICE
 
@@ -35,7 +36,7 @@
 #define device_read     (dev->read)
 #define device_write    (dev->write)
 #define device_control  (dev->control)
-#endif
+#endif /* RT_USING_DEVICE_OPS */
 
 /**
  * This function registers a device driver with specified name.
@@ -61,10 +62,10 @@ rt_err_t rt_device_register(rt_device_t dev,
     dev->ref_count = 0;
     dev->open_flag = 0;
 
-#if defined(RT_USING_POSIX)
+#ifdef RT_USING_POSIX
     dev->fops = RT_NULL;
     rt_wqueue_init(&(dev->wait_queue));
-#endif
+#endif /* RT_USING_POSIX */
 
     return RT_EOK;
 }
@@ -90,19 +91,6 @@ rt_err_t rt_device_unregister(rt_device_t dev)
 RTM_EXPORT(rt_device_unregister);
 
 /**
- * This function initializes all registered device driver
- *
- * @return the error code, RT_EOK on successfully.
- *
- * @deprecated since 1.2.x, this function is not needed because the initialization
- *             of a device is performed when application opens it.
- */
-rt_err_t rt_device_init_all(void)
-{
-    return RT_EOK;
-}
-
-/**
  * This function finds a device driver by specified name.
  *
  * @param name the device driver's name
@@ -111,38 +99,7 @@ rt_err_t rt_device_init_all(void)
  */
 rt_device_t rt_device_find(const char *name)
 {
-    struct rt_object *object;
-    struct rt_list_node *node;
-    struct rt_object_information *information;
-
-    /* enter critical */
-    if (rt_thread_self() != RT_NULL)
-        rt_enter_critical();
-
-    /* try to find device object */
-    information = rt_object_get_information(RT_Object_Class_Device);
-    RT_ASSERT(information != RT_NULL);
-    for (node  = information->object_list.next;
-         node != &(information->object_list);
-         node  = node->next)
-    {
-        object = rt_list_entry(node, struct rt_object, list);
-        if (rt_strncmp(object->name, name, RT_NAME_MAX) == 0)
-        {
-            /* leave critical */
-            if (rt_thread_self() != RT_NULL)
-                rt_exit_critical();
-
-            return (rt_device_t)object;
-        }
-    }
-
-    /* leave critical */
-    if (rt_thread_self() != RT_NULL)
-        rt_exit_critical();
-
-    /* not found */
-    return RT_NULL;
+    return (rt_device_t)rt_object_find(name, RT_Object_Class_Device);
 }
 RTM_EXPORT(rt_device_find);
 
@@ -193,7 +150,7 @@ void rt_device_destroy(rt_device_t dev)
     rt_free(dev);
 }
 RTM_EXPORT(rt_device_destroy);
-#endif
+#endif /* RT_USING_HEAP */
 
 /**
  * This function will initialize the specified device
@@ -477,4 +434,4 @@ rt_device_set_tx_complete(rt_device_t dev,
 }
 RTM_EXPORT(rt_device_set_tx_complete);
 
-#endif
+#endif /* RT_USING_DEVICE */

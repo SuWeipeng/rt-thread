@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2018, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -250,7 +250,7 @@ void rt_system_heap_init(void *begin_addr, void *end_addr)
     rt_mem_setname(heap_end, "INIT");
 #endif
 
-    rt_sem_init(&heap_sem, "heap", 1, RT_IPC_FLAG_FIFO);
+    rt_sem_init(&heap_sem, "heap", 1, RT_IPC_FLAG_PRIO);
 
     /* initialize the lowest-free pointer to the start of the heap */
     lfree = (struct heap_mem *)heap_ptr;
@@ -489,7 +489,7 @@ void *rt_realloc(void *rmem, rt_size_t newsize)
         {
             ((struct heap_mem *)&heap_ptr[mem2->next])->prev = ptr2;
         }
-        
+
         if (mem2 < lfree)
         {
             /* the splited struct is now the lowest */

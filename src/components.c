@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2018, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -23,11 +23,11 @@
 #ifdef RT_USING_USER_MAIN
 #ifndef RT_MAIN_THREAD_STACK_SIZE
 #define RT_MAIN_THREAD_STACK_SIZE     2048
-#endif
+#endif /* RT_MAIN_THREAD_STACK_SIZE */
 #ifndef RT_MAIN_THREAD_PRIORITY
 #define RT_MAIN_THREAD_PRIORITY       (RT_THREAD_PRIORITY_MAX / 3)
-#endif
-#endif
+#endif /* RT_MAIN_THREAD_PRIORITY */
+#endif /* RT_USING_USER_MAIN */
 
 #ifdef RT_USING_COMPONENTS_INIT
 /*
@@ -98,7 +98,7 @@ void rt_components_board_init(void)
     {
         (*fn_ptr)();
     }
-#endif
+#endif /* RT_DEBUG_INIT */
 }
 
 /**
@@ -124,9 +124,9 @@ void rt_components_init(void)
     {
         (*fn_ptr)();
     }
-#endif
+#endif /* RT_DEBUG_INIT */
 }
-#endif   /* RT_USING_COMPONENTS_INIT */
+#endif /* RT_USING_COMPONENTS_INIT */
 
 #ifdef RT_USING_USER_MAIN
 
@@ -167,25 +167,28 @@ int entry(void)
 ALIGN(8)
 static rt_uint8_t main_stack[RT_MAIN_THREAD_STACK_SIZE];
 struct rt_thread main_thread;
-#endif
+#endif /* RT_USING_HEAP */
 
 /* the system main thread */
 void main_thread_entry(void *parameter)
 {
     extern int main(void);
-    extern int $Super$$main(void);
 
 #ifdef RT_USING_COMPONENTS_INIT
     /* RT-Thread components initialization */
     rt_components_init();
-#endif
+#endif /* RT_USING_COMPONENTS_INIT */
+
 #ifdef RT_USING_SMP
     rt_hw_secondary_cpu_up();
-#endif
+#endif /* RT_USING_SMP */
     /* invoke system main function */
 #if defined(__CC_ARM) || defined(__CLANG_ARM)
-    $Super$$main(); /* for ARMCC. */
-#elif defined(__ICCARM__) || defined(__GNUC__)
+    {
+        extern int $Super$$main(void);
+        $Super$$main(); /* for ARMCC. */
+    }
+#elif defined(__ICCARM__) || defined(__GNUC__) || defined(__TASKING__)
     main();
 #endif
 }
@@ -208,7 +211,7 @@ void rt_application_init(void)
 
     /* if not define RT_USING_HEAP, using to eliminate the warning */
     (void)result;
-#endif
+#endif /* RT_USING_HEAP */
 
     rt_thread_startup(tid);
 }
@@ -234,7 +237,7 @@ int rtthread_startup(void)
 #ifdef RT_USING_SIGNALS
     /* signal system initialization */
     rt_system_signal_init();
-#endif
+#endif /* RT_USING_SIGNALS */
 
     /* create init_thread */
     rt_application_init();
@@ -247,7 +250,7 @@ int rtthread_startup(void)
 
 #ifdef RT_USING_SMP
     rt_hw_spin_lock(&_cpus_lock);
-#endif /*RT_USING_SMP*/
+#endif /* RT_USING_SMP */
 
     /* start scheduler */
     rt_system_scheduler_start();
@@ -255,4 +258,4 @@ int rtthread_startup(void)
     /* never reach here */
     return 0;
 }
-#endif
+#endif /* RT_USING_USER_MAIN */

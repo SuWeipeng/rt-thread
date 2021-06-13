@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2018, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -22,27 +22,27 @@
 
 #ifdef RT_USING_MODULE
 #include <dlmodule.h>
-#endif
+#endif /* RT_USING_MODULE */
 
-#if defined (RT_USING_HOOK)
+#ifdef RT_USING_HOOK
 #ifndef RT_USING_IDLE_HOOK
 #define RT_USING_IDLE_HOOK
-#endif
-#endif
+#endif /* RT_USING_IDLE_HOOK */
+#endif /* RT_USING_HOOK */
 
 #ifndef IDLE_THREAD_STACK_SIZE
 #if defined (RT_USING_IDLE_HOOK) || defined(RT_USING_HEAP)
 #define IDLE_THREAD_STACK_SIZE  256
 #else
 #define IDLE_THREAD_STACK_SIZE  128
-#endif
-#endif
+#endif /* (RT_USING_IDLE_HOOK) || defined(RT_USING_HEAP) */
+#endif /* IDLE_THREAD_STACK_SIZE */
 
 #ifdef RT_USING_SMP
 #define _CPUS_NR                RT_CPUS_NR
 #else
 #define _CPUS_NR                1
-#endif
+#endif /* RT_USING_SMP */
 
 extern rt_list_t rt_thread_defunct;
 
@@ -53,7 +53,7 @@ static rt_uint8_t rt_thread_stack[_CPUS_NR][IDLE_THREAD_STACK_SIZE];
 #ifdef RT_USING_IDLE_HOOK
 #ifndef RT_IDLE_HOOK_LIST_SIZE
 #define RT_IDLE_HOOK_LIST_SIZE  4
-#endif
+#endif /* RT_IDLE_HOOK_LIST_SIZE */
 
 static void (*idle_hook_list[RT_IDLE_HOOK_LIST_SIZE])(void);
 
@@ -125,8 +125,9 @@ rt_err_t rt_thread_idle_delhook(void (*hook)(void))
     return ret;
 }
 
-#endif
+#endif /* RT_USING_IDLE_HOOK */
 
+#ifdef RT_USING_HEAP
 /* Return whether there is defunctional thread to be deleted. */
 rt_inline int _has_defunct_thread(void)
 {
@@ -140,6 +141,7 @@ rt_inline int _has_defunct_thread(void)
 
     return l->next != l;
 }
+#endif /* RT_USING_HEAP */
 
 /**
  * @ingroup Thread
@@ -150,82 +152,37 @@ void rt_thread_idle_excute(void)
 {
     /* Loop until there is no dead thread. So one call to rt_thread_idle_excute
      * will do all the cleanups. */
-    while (_has_defunct_thread())
+    /* disable interrupt */
+
+    RT_DEBUG_NOT_IN_INTERRUPT;
+
+#ifdef RT_USING_HEAP
+    while (1)
     {
         rt_base_t lock;
         rt_thread_t thread;
-#ifdef RT_USING_MODULE
-        struct rt_dlmodule *module = RT_NULL;
-#endif
-        RT_DEBUG_NOT_IN_INTERRUPT;
 
-        /* disable interrupt */
         lock = rt_hw_interrupt_disable();
 
-        /* re-check whether list is empty */
-        if (_has_defunct_thread())
+        /* check whether list is empty */
+        if (!_has_defunct_thread())
         {
-            /* get defunct thread */
-            thread = rt_list_entry(rt_thread_defunct.next,
-                                   struct rt_thread,
-                                   tlist);
-#ifdef RT_USING_MODULE
-            module = (struct rt_dlmodule*)thread->module_id;
-            if (module)
-            {
-                dlmodule_destroy(module);
-            }
-#endif
-            /* remove defunct thread */
-            rt_list_remove(&(thread->tlist));
-
-            /* lock scheduler to prevent scheduling in cleanup function. */
-            rt_enter_critical();
-
-            /* invoke thread cleanup */
-            if (thread->cleanup != RT_NULL)
-                thread->cleanup(thread);
-
-#ifdef RT_USING_SIGNALS
-            rt_thread_free_sig(thread);
-#endif
-
-            /* if it's a system object, not delete it */
-            if (rt_object_is_systemobject((rt_object_t)thread) == RT_TRUE)
-            {
-                /* detach this object */
-                rt_object_detach((rt_object_t)thread);
-                /* unlock scheduler */
-                rt_exit_critical();
-
-                /* enable interrupt */
-                rt_hw_interrupt_enable(lock);
-
-                return;
-            }
-
-            /* unlock scheduler */
-            rt_exit_critical();
-        }
-        else
-        {
-            /* enable interrupt */
             rt_hw_interrupt_enable(lock);
-
-            /* may the defunct thread list is removed by others, just return */
-            return;
+            break;
         }
-
-        /* enable interrupt */
-        rt_hw_interrupt_enable(lock);
-
-#ifdef RT_USING_HEAP
+        /* get defunct thread */
+        thread = rt_list_entry(rt_thread_defunct.next,
+                struct rt_thread,
+                tlist);
+        /* remove defunct thread */
+        rt_list_remove(&(thread->tlist));
         /* release thread's stack */
         RT_KERNEL_FREE(thread->stack_addr);
         /* delete thread object */
         rt_object_delete((rt_object_t)thread);
-#endif
+        rt_hw_interrupt_enable(lock);
     }
+#endif /* RT_USING_HEAP */
 }
 
 extern void rt_system_power_manager(void);
@@ -239,26 +196,28 @@ static void rt_thread_idle_entry(void *parameter)
             rt_hw_secondary_cpu_idle_exec();
         }
     }
-#endif
+#endif /* RT_USING_SMP */
 
     while (1)
     {
 #ifdef RT_USING_IDLE_HOOK
         rt_size_t i;
+        void (*idle_hook)(void);
 
         for (i = 0; i < RT_IDLE_HOOK_LIST_SIZE; i++)
         {
-            if (idle_hook_list[i] != RT_NULL)
+            idle_hook = idle_hook_list[i];
+            if (idle_hook != RT_NULL)
             {
-                idle_hook_list[i]();
+                idle_hook();
             }
         }
-#endif
+#endif /* RT_USING_IDLE_HOOK */
 
         rt_thread_idle_excute();
-#ifdef RT_USING_PM        
+#ifdef RT_USING_PM
         rt_system_power_manager();
-#endif
+#endif /* RT_USING_PM */
     }
 }
 
@@ -287,7 +246,7 @@ void rt_thread_idle_init(void)
                 32);
 #ifdef RT_USING_SMP
         rt_thread_control(&idle[i], RT_THREAD_CTRL_BIND_CPU, (void*)i);
-#endif
+#endif /* RT_USING_SMP */
         /* startup */
         rt_thread_startup(&idle[i]);
     }
@@ -305,7 +264,7 @@ rt_thread_t rt_thread_idle_gethandler(void)
     register int id = rt_hw_cpu_id();
 #else
     register int id = 0;
-#endif
+#endif /* RT_USING_SMP */
 
     return (rt_thread_t)(&idle[id]);
 }

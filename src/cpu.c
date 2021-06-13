@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2018, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -185,4 +185,4 @@ void rt_cpus_lock_status_restore(struct rt_thread *thread)
 }
 RTM_EXPORT(rt_cpus_lock_status_restore);
 
-#endif
+#endif /* RT_USING_SMP */

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2018, RT-Thread Development Team
+ * Copyright (c) 2006-2021, RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -363,7 +363,7 @@ void rt_system_heap_init(void *begin_addr, void *end_addr)
     npages  = limsize / RT_MM_PAGE_SIZE;
 
     /* initialize heap semaphore */
-    rt_sem_init(&heap_sem, "heap", 1, RT_IPC_FLAG_FIFO);
+    rt_sem_init(&heap_sem, "heap", 1, RT_IPC_FLAG_PRIO);
 
     RT_DEBUG_LOG(RT_DEBUG_SLAB, ("heap[0x%x - 0x%x], size 0x%x, 0x%x pages\n",
                                  heap_start, heap_end, limsize, npages));
@@ -540,7 +540,7 @@ void *rt_malloc(rt_size_t size)
     {
         RT_ASSERT(z->z_nfree > 0);
 
-        /* Remove us from the zone_array[] when we become empty */
+        /* Remove us from the zone_array[] when we become full */
         if (--z->z_nfree == 0)
         {
             zone_array[zi] = z->z_next;
