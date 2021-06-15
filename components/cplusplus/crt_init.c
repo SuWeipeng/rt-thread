@@ -13,14 +13,14 @@
 
 #include <rtthread.h>
 
-#if defined(__CC_ARM) || defined(__CLANG_ARM)
+#if defined(__CC_ARM) || defined(__CLANG_ARM) && 0
 extern void $Super$$__cpp_initialize__aeabi_(void);
 /* we need to change the cpp_initialize order */
 RT_WEAK void $Sub$$__cpp_initialize__aeabi_(void)
 {
     /* empty */
 }
-#elif defined(__GNUC__) && !defined(__CS_SOURCERYGXX_MAJ__)
+#elif defined(__GNUC__) && !defined(__CS_SOURCERYGXX_MAJ__) && !defined (__clang__)
 /* The _init()/_fini() routines has been defined in codesourcery g++ lite */
 RT_WEAK void _init()
 {
@@ -36,7 +36,7 @@ RT_WEAK void *__dso_handle = 0;
 
 RT_WEAK int cplusplus_system_init(void)
 {
-#if defined(__CC_ARM) || defined(__CLANG_ARM)
+#if defined(__CC_ARM) || defined(__CLANG_ARM) && 0
     /* If there is no SHT$$INIT_ARRAY, calling
      * $Super$$__cpp_initialize__aeabi_() will cause fault. At least until Keil5.12
      * the problem still exists. So we have to initialize the C++ runtime by ourself.
@@ -53,7 +53,7 @@ RT_WEAK int cplusplus_system_init(void)
         PROC *proc = (PROC *)((const char *)base + *base);
         (*proc)();
     }
-#elif defined(__GNUC__)
+#elif defined(__GNUC__) && !defined (__clang__)
     typedef void(*pfunc)();
     extern pfunc __ctors_start__[];
     extern pfunc __ctors_end__[];
